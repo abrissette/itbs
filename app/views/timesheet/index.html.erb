@@ -1,0 +1,17 @@
+<h1>Timesheet#index</h1>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h1>Your timesheet for the period</h1>
+
+<% @worklogs.each do |worklog| %>
+    <div class="entry">
+        <%= worklog.date %>
+        <%= worklog.employee_name %>
+        <%= sanitize(worklog.description) %>
+        <%= worklog.project_code %>
+        <%= worklog.type_code %>
+        <%= worklog.value %>
+    </div>
+<% end %>

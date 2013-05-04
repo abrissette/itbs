@@ -5,3 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Worklog.create([{date:'01/05/2013', description:'Make some work', employee_name:'Andre',project_code:'003',type_code:'4',value:'30' }])
