@@ -7,7 +7,7 @@ class WorklogTest < ActiveSupport::TestCase
     assert worklog.invalid?
     assert worklog.errors[:date].any?
     assert worklog.errors[:employee_name].any?
-    assert worklog.errors[:project_code].any?
+    assert worklog.errors[:project].any?
     assert worklog.errors[:type_code].any?
     assert worklog.errors[:value].any?
   end
@@ -20,7 +20,7 @@ class WorklogTest < ActiveSupport::TestCase
     assert_equal ["number of minutes must be greater or equal to 30"], worklog.errors[:value]
   end
 
-  test "project code should be valid" do
+  test "project should be valid" do
     assert false
   end
 

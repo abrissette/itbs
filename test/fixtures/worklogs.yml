@@ -3,7 +3,6 @@
 one:
   employee_name: Andre
   date: 2013-05-01
-  project_code: 6003003
   type_code: requirement
   value: 30
   description: info on this çlog
@@ -11,7 +10,6 @@ one:
 two:
   employee_name: MyText
   date: 2013-05-06
-  project_code: MyText
   type_code: unit test
   value: 1
   description: another test
