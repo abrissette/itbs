@@ -10,4 +10,4 @@ projects = Project.create([ {code: '603002', name: 'iLove Server Design'}, \
                             {code: '603008', name: 'Mobile Design (Android & iOS)'}, \
                             {code: '603009', name: 'Mobile Development (Android & iOS)'}])
 
-Worklog.create([{date:'01/05/2013', description:'Make some work', employee_name:'Andre',project: projects.first,type_code:'4',value:'30' }])
+Worklog.create(date:'01/05/2013', description:'Make some work', employee_name:'Andre', project: projects.first, type_code:'4',value:'30')

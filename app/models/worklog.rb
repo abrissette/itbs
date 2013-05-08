@@ -1,5 +1,5 @@
 class Worklog < ActiveRecord::Base
-  attr_accessible :date, :description, :employee_name, :type_code, :value
+  attr_accessible :date, :description, :employee_name, :project, :type_code, :value
 
   validates :date, :employee_name, :project, :type_code, :presence => true
 
