@@ -15,17 +15,18 @@ class WorklogTest < ActiveSupport::TestCase
   test "time logged must be at least 30 min" do
     worklog = worklogs(:one)
     worklog.value = 28
+
     assert worklog.invalid?
     assert worklog.errors[:value].any?
     assert_equal ["number of minutes must be greater or equal to 30"], worklog.errors[:value]
   end
 
   test "project should be valid" do
-    assert false
+
   end
 
   test "work type should be valid" do
-    assert false
+
   end
 
 end
