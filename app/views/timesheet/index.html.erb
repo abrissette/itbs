@@ -10,7 +10,7 @@
         <%= worklog.date %>
         <%= worklog.employee_name %>
         <%= sanitize(worklog.description) %>
-        <%= worklog.project_code %>
+        <%= worklog.project.name %>
         <%= worklog.type_code %>
         <%= worklog.value %>
     </div>

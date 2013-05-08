@@ -13,7 +13,7 @@ class WorklogTest < ActiveSupport::TestCase
   end
 
   test "time logged must be at least 30 min" do
-    worklog = worklogs(:one)
+    worklog = worklogs(:worklog_on_ilove)
     worklog.value = 28
 
     assert worklog.invalid?

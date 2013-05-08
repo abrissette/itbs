@@ -7,7 +7,6 @@
 ilove:
   code: '123456'
   name: 'first project'
-  worklogs: => {[worklog_on_ilove] }
 
 motility:
   code: '012345'
