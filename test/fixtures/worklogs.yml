@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-worklog_on_ilove:
+requirement_on_ilove:
   employee_name: Andre
   date: 2013-05-01
   project: ilove
-  type_code: requirement
+  type: requirements
   value: 30
   description: info on this çlog
 
-worklog_on_motility:
+unit_testing_on_motility:
   employee_name: MyText
   date: 2013-05-06
   project: motility
-  type_code: unit test
+  type: unit testing
   value: 1
   description: another test
