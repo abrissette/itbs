@@ -14,7 +14,7 @@ class WorklogTest < ActiveSupport::TestCase
 
   test "time logged must be at least 30 min" do
     worklog = worklogs(:requirement_on_ilove)
-    worklog = 28
+    worklog.value = 28
 
     assert worklog.invalid?
     assert worklog.errors[:value].any?

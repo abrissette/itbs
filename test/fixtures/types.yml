@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+requirements:
+  code: 7130
+  name: Requirements
+
+unit_testing:
+  code: 7250
+  name: Unit Testing

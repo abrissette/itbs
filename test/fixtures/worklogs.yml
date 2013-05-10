@@ -12,6 +12,6 @@ unit_testing_on_motility:
   employee_name: MyText
   date: 2013-05-06
   project: motility
-  type: unit testing
+  type: unit_testing
   value: 1
   description: another test
