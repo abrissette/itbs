@@ -5,7 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-projects = Project.create([ {code: '603002', name: 'iLove Server Design'}, \
+projects = Project.create([ {code: '000000', name: 'General'}, \
+                            {code: '603002', name: 'iLove Server Design'}, \
                             {code: '603003', name: 'iLove Server Development'}, \
                             {code: '603008', name: 'Mobile Design (Android & iOS)'}, \
                             {code: '603009', name: 'Mobile Development (Android & iOS)'}])
