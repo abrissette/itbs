@@ -30,9 +30,11 @@ class TypesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should render edit template when editing project" do
     get :edit, id: @type
     assert_response :success
+    assert_template "edit"
+    assert_select 'form[url=]'
   end
 
   test "should update type" do

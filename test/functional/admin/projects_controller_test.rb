@@ -18,7 +18,7 @@ class Admin::ProjectsControllerTest < ActionController::TestCase
 
   test "should create admin_project" do
     assert_difference('Project.count') do
-      post :create, project: {  }
+      post :create, project: {code: '123456', name: 'El Project'  }
     end
 
     assert_redirected_to admin_project_path(assigns(:project))
@@ -35,7 +35,7 @@ class Admin::ProjectsControllerTest < ActionController::TestCase
   end
 
   test "should update admin_project" do
-    put :update, id: @project, project: {  }
+    put :update, id: @project, project: { code: '123456', name: 'El Project' }
     assert_redirected_to admin_project_path(assigns(:project))
   end
 
