@@ -1,6 +1,6 @@
-class TypesController < ApplicationController
-  # GET /types
-  # GET /types.json
+class Admin::TypesController < ApplicationController
+  # GET /admin/types
+  # GET /admin/types.json
   def index
     @types = Type.all
 
@@ -10,8 +10,8 @@ class TypesController < ApplicationController
     end
   end
 
-  # GET /types/1
-  # GET /types/1.json
+  # GET /admin/types/1
+  # GET /admin/types/1.json
   def show
     @type = Type.find(params[:id])
 
@@ -21,8 +21,8 @@ class TypesController < ApplicationController
     end
   end
 
-  # GET /types/new
-  # GET /types/new.json
+  # GET /admin/types/new
+  # GET /admin/types/new.json
   def new
     @type = Type.new
 
@@ -32,19 +32,19 @@ class TypesController < ApplicationController
     end
   end
 
-  # GET /types/1/edit
+  # GET /admin/types/1/edit
   def edit
     @type = Type.find(params[:id])
   end
 
-  # POST /types
-  # POST /types.json
+  # POST /admin/types
+  # POST /admin/types.json
   def create
     @type = Type.new(params[:type])
 
     respond_to do |format|
       if @type.save
-        format.html { redirect_to @type, notice: 'Type was successfully created.' }
+        format.html { redirect_to admin_type_path(@type), notice: 'Type was successfully created.' }
         format.json { render json: @type, status: :created, location: @type }
       else
         format.html { render action: "new" }
@@ -53,14 +53,14 @@ class TypesController < ApplicationController
     end
   end
 
-  # PUT /types/1
-  # PUT /types/1.json
+  # PUT /admin/types/1
+  # PUT /admin/types/1.json
   def update
     @type = Type.find(params[:id])
 
     respond_to do |format|
       if @type.update_attributes(params[:type])
-        format.html { redirect_to @type, notice: 'Type was successfully updated.' }
+        format.html { redirect_to admin_type_path(@type), notice: 'Type was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class TypesController < ApplicationController
     @type.destroy
 
     respond_to do |format|
-      format.html { redirect_to types_url }
+      format.html { redirect_to admin_types_url }
       format.json { head :no_content }
     end
   end

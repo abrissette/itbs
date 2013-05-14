@@ -1,7 +1,7 @@
 Itbs::Application.routes.draw do
-  resources :types
 
   namespace :admin do
+    resources :types
     resources :projects
   end
 
