@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-requirement_on_ilove:
-  employee_name: Andre
+requirement_on_ilove_for_andre:
+  employee: Andre
   date: 2013-05-01
   project: ilove
   type: requirements
   value: 30
   description: info on this çlog
 
-unit_testing_on_motility:
-  employee_name: MyText
+unit_testing_on_motility_andre:
+  employee: Andre
   date: 2013-05-06
   project: motility
   type: unit_testing

@@ -50,7 +50,7 @@ class TypesControllerTest < ActionController::TestCase
 
   test "should destroy type when not referenced by any worklog" do
     @type =  Type.create(code: '0000', name: 'UNUSED TYPE')
-    worklog = worklogs(:requirement_on_ilove)
+    worklog = worklogs(:requirement_on_ilove_for_andre)
     worklog.type = @type
 
     assert_difference('Type.count', -1) do

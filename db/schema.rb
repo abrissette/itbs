@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509201555) do
+ActiveRecord::Schema.define(:version => 20130514122328) do
+
+  create_table "employees", :force => true do |t|
+    t.string   "jira_username"
+    t.string   "tempo_staff_id"
+    t.string   "employee_number"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "projects", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -28,16 +36,17 @@ ActiveRecord::Schema.define(:version => 20130509201555) do
   end
 
   create_table "worklogs", :force => true do |t|
-    t.text     "employee_name"
     t.date     "date"
     t.integer  "value"
     t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "project_id"
     t.integer  "type_id"
+    t.integer  "employee_id"
   end
 
+  add_index "worklogs", ["employee_id"], :name => "index_worklogs_on_employee_id"
   add_index "worklogs", ["project_id"], :name => "index_worklogs_on_project_id"
   add_index "worklogs", ["type_id"], :name => "index_worklogs_on_type_id"
 

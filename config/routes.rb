@@ -1,6 +1,9 @@
 Itbs::Application.routes.draw do
   resources :types
 
+  namespace :admin do
+    resources :projects
+  end
 
   get "timesheet/index"
   resources :worklogs

@@ -34,4 +34,7 @@ types = Type.create([ {code: '7000', name: 'Project Mng'}, \
                             {code: '9964', name: 'Travel Arrangements'}, \
                             {code: '9935', name: 'Staff Management'}])
 
-Worklog.create(date:'01/05/2013', description:'Make some work', employee_name:'Andre', project: projects.first, type: types.first,value:'30')
+employees = Employee.create([ {jira_username: 'andre.brissette@jestadigital.com', tempo_staff_id: 'andre.brissette@jestadigital.com', employee_number: '21950'}])
+
+
+Worklog.create(date:'01/05/2013', description:'Make some work', employee: employees.first, project: projects.first, type: types.first,value:'30')

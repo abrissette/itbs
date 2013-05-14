@@ -6,14 +6,14 @@ class WorklogTest < ActiveSupport::TestCase
 
     assert worklog.invalid?
     assert worklog.errors[:date].any?
-    assert worklog.errors[:employee_name].any?
+    assert worklog.errors[:employee].any?
     assert worklog.errors[:project].any?
     assert worklog.errors[:type].any?
     assert worklog.errors[:value].any?
   end
 
   test "time logged must be at least 30 min" do
-    worklog = worklogs(:requirement_on_ilove)
+    worklog = worklogs(:requirement_on_ilove_for_andre)
     worklog.value = 28
 
     assert worklog.invalid?
@@ -22,7 +22,7 @@ class WorklogTest < ActiveSupport::TestCase
   end
 
   test "project should be valid" do
-    worklog = worklogs(:requirement_on_ilove)
+    worklog = worklogs(:requirement_on_ilove_for_andre)
     worklog.project = nil
 
     assert worklog.invalid?
@@ -30,7 +30,7 @@ class WorklogTest < ActiveSupport::TestCase
   end
 
   test "work type should be valid" do
-    worklog = worklogs(:requirement_on_ilove)
+    worklog = worklogs(:requirement_on_ilove_for_andre)
     worklog.type = nil
 
     assert worklog.invalid?

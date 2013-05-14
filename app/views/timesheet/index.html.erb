@@ -8,7 +8,7 @@
 <% @worklogs.each do |worklog| %>
     <div class="entry">
         <%= worklog.date %>
-        <%= worklog.employee_name %>
+        <%= worklog.employee.jira_username %>
         <%= sanitize(worklog.description) %>
         <%= worklog.project.name %>
         <%= worklog.type.name %>
