@@ -1,5 +1,5 @@
 class TimesheetController < ApplicationController
   def index
-    @worklogs = Worklog.order(:date)
+    @timesheet = Timesheet.first
   end
 end

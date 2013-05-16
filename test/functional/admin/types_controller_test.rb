@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'worklog'
 
-class TypesControllerTest < ActionController::TestCase
+class Admin::TypesControllerTest < ActionController::TestCase
   setup do
     @type = types(:requirement)
   end
@@ -22,7 +22,7 @@ class TypesControllerTest < ActionController::TestCase
       post :create, type: { code: @type.code, name: @type.name }
     end
 
-    assert_redirected_to type_path(assigns(:type))
+    assert_redirected_to admin_type_path(assigns(:type))
   end
 
   test "should show type" do
@@ -30,35 +30,32 @@ class TypesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should render edit template when editing project" do
+  test "should render edit template when editing type" do
     get :edit, id: @type
     assert_response :success
     assert_template "edit"
-    assert_select 'form[url=]'
   end
 
   test "should update type" do
     put :update, id: @type, type: { code: @type.code, name: @type.name }
-    assert_redirected_to type_path(assigns(:type))
+    assert_redirected_to admin_type_path(assigns(:type))
   end
 
-  test "should not destroy type when referenced by worklog" do
+  test "should not delete type when referenced by worklog" do
     assert_difference('Type.count', 0) do
       delete :destroy, id: @type
     end
 
-    assert_redirected_to types_path
+    assert_redirected_to admin_types_path
   end
 
-  test "should destroy type when not referenced by any worklog" do
-    @type =  Type.create(code: '0000', name: 'UNUSED TYPE')
-    worklog = worklogs(:requirement_on_ilove)
-    worklog.type = @type
+  test "should delete type when not referenced by any worklog" do
+    type =  Type.create(code: '0000', name: 'UNUSED TYPE')
 
     assert_difference('Type.count', -1) do
-      delete :destroy, id: @type
+      delete :destroy, id: type
     end
 
-    assert_redirected_to types_path
+    assert_redirected_to admin_types_path
   end
 end

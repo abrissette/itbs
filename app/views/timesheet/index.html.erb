@@ -3,12 +3,11 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<h1>Your timesheet for the period</h1>
+<h1>Timesheet for <% @timesheet.employee.jira_username %>for the period ending on <% @timesheet.end_date %></h1>
 
-<% @worklogs.each do |worklog| %>
+<% @timesheet.worklogs.each do |worklog| %>
     <div class="entry">
         <%= worklog.date %>
-        <%= worklog.employee.jira_username %>
         <%= sanitize(worklog.description) %>
         <%= worklog.project.name %>
         <%= worklog.type.name %>
