@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514122328) do
+ActiveRecord::Schema.define(:version => 20130516131734) do
 
   create_table "employees", :force => true do |t|
     t.string   "jira_username"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(:version => 20130514122328) do
     t.string   "name"
   end
 
+  create_table "timesheets", :force => true do |t|
+    t.date     "end_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "employee_id"
+  end
+
+  add_index "timesheets", ["employee_id"], :name => "index_timesheets_on_employee_id"
+
   create_table "types", :force => true do |t|
     t.string   "code"
     t.string   "name"
@@ -39,15 +48,15 @@ ActiveRecord::Schema.define(:version => 20130514122328) do
     t.date     "date"
     t.integer  "value"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "project_id"
     t.integer  "type_id"
-    t.integer  "employee_id"
+    t.integer  "timesheet_id"
   end
 
-  add_index "worklogs", ["employee_id"], :name => "index_worklogs_on_employee_id"
   add_index "worklogs", ["project_id"], :name => "index_worklogs_on_project_id"
+  add_index "worklogs", ["timesheet_id"], :name => "index_worklogs_on_timesheet_id"
   add_index "worklogs", ["type_id"], :name => "index_worklogs_on_type_id"
 
 end

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+timesheet_for_andre_with_two_worklog:
+  employee: Andre
+  end_date: 2013-05-14
+
+timesheet_for_martin_without_worklog:
+  employee: Martin
+  end_date: 2013-05-16

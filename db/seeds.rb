@@ -37,4 +37,7 @@ types = Type.create([ {code: '7000', name: 'Project Mng'}, \
 employees = Employee.create([ {jira_username: 'andre.brissette@jestadigital.com', tempo_staff_id: 'andre.brissette@jestadigital.com', employee_number: '21950'}])
 
 
-Worklog.create(date:'01/05/2013', description:'Make some work', employee: employees.first, project: projects.first, type: types.first,value:'30')
+worklogs = Worklog.create([ {date:'01/05/2013', description:'Make some work', project: projects.first, type: types.first,value:'30'}, \
+                            {date:'02/05/2013', description:'Other important work', project: projects.first, type: types.second,value:'60'}])
+
+Timesheet.create(end_date:'02/05/2013', employee: employees.first)

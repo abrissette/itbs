@@ -3,7 +3,7 @@ require 'test_helper'
 class TypeTest < ActiveSupport::TestCase
 
   test "code should be exactly 4 character" do
-     type = types(:requirement_on_ilove_for_andre)
+     type = types(:requirement)
      type.code = "XYZ"
 
      assert type.invalid?
@@ -11,7 +11,7 @@ class TypeTest < ActiveSupport::TestCase
   end
 
   test "should not remove type when referenced by worklog" do
-    worklog = worklogs(:requirement_on_ilove_for_andre)
+    worklog = worklogs(:requirement_on_ilove)
     type = worklog.type
 
     assert_difference('Type.count', 0) do

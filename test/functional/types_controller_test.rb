@@ -3,7 +3,7 @@ require 'worklog'
 
 class TypesControllerTest < ActionController::TestCase
   setup do
-    @type = types(:requirements)
+    @type = types(:requirement)
   end
 
   test "should get index" do
@@ -52,7 +52,7 @@ class TypesControllerTest < ActionController::TestCase
 
   test "should destroy type when not referenced by any worklog" do
     @type =  Type.create(code: '0000', name: 'UNUSED TYPE')
-    worklog = worklogs(:requirement_on_ilove_for_andre)
+    worklog = worklogs(:requirement_on_ilove)
     worklog.type = @type
 
     assert_difference('Type.count', -1) do
