@@ -1,12 +1,13 @@
 Itbs::Application.routes.draw do
 
+  resources :worklogs
+
   namespace :admin do
     resources :types
     resources :projects
   end
 
   get "timesheet/index"
-  resources :worklogs
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
