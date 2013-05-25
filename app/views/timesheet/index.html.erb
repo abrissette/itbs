@@ -5,12 +5,4 @@
 
 <h1>Timesheet for <%= @timesheet.employee.jira_username %> for the period ending on <%= @timesheet.end_date %></h1>
 
-<% @timesheet.worklogs.each do |worklog| %>
-    <div class="entry">
-        <%= worklog.date %>
-        <%= sanitize(worklog.description) %>
-        <%= worklog.project.name %>
-        <%= worklog.type.name %>
-        <%= worklog.value %>
-    </div>
-<% end %>
+<%= render(partial: "worklogs/form", collection:  @timesheet.worklogs) %>
