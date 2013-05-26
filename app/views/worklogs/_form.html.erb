@@ -12,11 +12,11 @@
   <% end %>
 
     <div class="entry">
-        <%= worklog.date %>
-        <%= sanitize(worklog.description) %>
-        <%= select(:worklog, :project_id, Project.all, :id, :name) %>
-        <%= select(:worklog, :type_id, Type.all, :id, :name) %>
-        <%= worklog.value %>
+        <%= f.date_select(:date) %>
+        <%= f.text_field(:description) %>
+        <%= f.collection_select(:project_id, Project.all, :id, :name ) %>
+        <%= f.collection_select(:type_id, Type.all, :id, :name ) %>
+        <%= f.text_field(:value) %>
     </div>
 
   <div class="actions">

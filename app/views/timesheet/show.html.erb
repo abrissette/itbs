@@ -1,8 +1,8 @@
-<h1>Timesheet#index</h1>
+<h1>Timesheet#show</h1>
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
 
 <h1>Timesheet for <%= @timesheet.employee.jira_username %> for the period ending on <%= @timesheet.end_date %></h1>
 
-<%= render(partial: "worklogs/form", collection:  @timesheet.worklogs) %>
+<%= render :partial => "worklogs/form", :collection =>@timesheet.worklogs,  :as => :@worklog %>

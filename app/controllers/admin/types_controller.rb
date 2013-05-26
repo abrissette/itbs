@@ -5,7 +5,7 @@ class Admin::TypesController < ApplicationController
     @types = Type.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # show.html.erb
       format.json { render json: @types }
     end
   end

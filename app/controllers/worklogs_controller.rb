@@ -5,7 +5,7 @@ class WorklogsController < ApplicationController
     @worklogs = Worklog.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # show.html.erb
       format.json { render json: @worklogs }
     end
   end

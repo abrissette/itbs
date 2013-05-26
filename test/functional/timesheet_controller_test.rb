@@ -1,13 +1,17 @@
 require 'test_helper'
 
 class TimesheetControllerTest < ActionController::TestCase
-  test "should get index" do
-    get :index
-    assert_response :success
-  end
-  context "when viewing a timesheet" do
+
+  context "when showing a timesheet" do
+
+    setup do
+      @timesheet = timesheets(:timesheet_for_andre_with_two_worklog)
+    end
+
     should "see all his worklogs within separate form to edit" do
-      assert false
+      get :show, id: @timesheet
+      assert_response :success
+      assert_template :partial => 'worklogs/form', :count => 2
     end
   end
 end

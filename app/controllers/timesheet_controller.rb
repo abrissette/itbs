@@ -1,5 +1,5 @@
 class TimesheetController < ApplicationController
-  def index
+  def show
     @timesheet = Timesheet.first
   end
 end
