@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-requirement_on_ilove:
+requirement_on_ilove_for_andre:
   date: 2013-05-01
   project: ilove
   type: requirement
@@ -8,10 +8,17 @@ requirement_on_ilove:
   description: info on this log
   timesheet: timesheet_for_andre_with_two_worklog
 
-unit_testing_on_motility:
+unit_testing_on_motility_for_andre:
   date: 2013-05-06
   project: motility
   type: unit_testing
   value: 1
   description: another test
   timesheet: timesheet_for_andre_with_two_worklog
+
+requirement_on_ilove:
+  date: 2013-02-10
+  project: ilove
+  type: requirement
+  value: 1
+  description: info on this other log

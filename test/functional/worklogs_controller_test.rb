@@ -18,7 +18,7 @@ class WorklogsControllerTest < ActionController::TestCase
 
   test "should create worklog" do
     assert_difference('Worklog.count') do
-      post :create, worklog: {date: '2013/02/16', project_id: '1', type_id:'1', value:'1'  }
+      post :create, worklog: {date: '2013/02/16', project_id: 1, type_id: 1, value: 1  }
     end
 
     assert_redirected_to worklog_path(assigns(:worklog))
@@ -35,7 +35,7 @@ class WorklogsControllerTest < ActionController::TestCase
   end
 
   test "should update worklog" do
-    put :update, id: @worklog, worklog: { date: '2013/02/16', project_id: '1', type_id:'1', value:'1'  }
+    put :update, id: @worklog, worklog: { date: '2013/02/16', project_id: 1, type_id: 1, value:1  }
     assert_redirected_to worklog_path(assigns(:worklog))
   end
 

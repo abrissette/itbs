@@ -8,8 +8,8 @@ class WorklogTest < ActiveSupport::TestCase
 
       assert worklog.invalid?
       assert worklog.errors[:date].any?
-      assert worklog.errors[:project].any?
-      assert worklog.errors[:type].any?
+      assert worklog.errors[:project_id].any?
+      assert worklog.errors[:type_id].any?
       assert worklog.errors[:value].any?
     end
 
@@ -17,7 +17,7 @@ class WorklogTest < ActiveSupport::TestCase
 
   context "when validating a worklog" do
     setup do
-      @worklog = worklogs(:requirement_on_ilove)
+      @worklog = worklogs(:requirement_on_ilove_for_andre)
     end
 
     should "have a duration of half an hour" do
@@ -32,7 +32,7 @@ class WorklogTest < ActiveSupport::TestCase
       @worklog.project = nil
 
       assert @worklog.invalid?
-      assert @worklog.errors[:project].any?
+      assert @worklog.errors[:project_id].any?
 
     end
 
@@ -40,7 +40,7 @@ class WorklogTest < ActiveSupport::TestCase
       @worklog.type = nil
 
       assert @worklog.invalid?
-      assert @worklog.errors[:type].any?
+      assert @worklog.errors[:type_id].any?
     end
 
     context "when saving a worklog" do

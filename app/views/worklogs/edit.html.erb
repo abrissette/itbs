@@ -1,6 +1,6 @@
 <h1>Editing worklog</h1>
 
-<%= render 'form' %>
+<%= render :partial=> "shared/worklog", :object => @worklog %>
 
 <%= link_to 'Show', @worklog %> |
 <%= link_to 'Back', worklogs_path %>
