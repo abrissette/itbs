@@ -15,9 +15,9 @@ class WorklogTest < ActiveSupport::TestCase
 
   end
 
-  context "when validating a worklog" do
+  context "when validating a worklog " do
     setup do
-      @worklog = worklogs(:requirement_on_ilove_for_andre)
+      @worklog = worklogs(:requirement_on_ilove)
     end
 
     should "have a duration of half an hour" do
@@ -43,19 +43,31 @@ class WorklogTest < ActiveSupport::TestCase
       assert @worklog.errors[:type_id].any?
     end
 
-    context "when saving a worklog" do
+    context "and saving a worklog assigned to a timesheet " do
 
-        should "have date within timesheet period" do
-          timesheet = timesheets(:timesheet_for_martin_without_worklog)
-          timesheet.end_date = 2.days.ago
-          @worklog.date = DateTime.now
+      setup do
+        @worklog = worklogs(:requirement_on_ilove_for_andre)
+      end
 
-          assert !@worklog.save
-          assert @worklog.errors[:end_date].any?
-          assert_equal ["worklog date is not in timesheet range"], @worklog.errors[:end_date]
+      should "accept worklog date on last day of timesheet period" do
+        @worklog.timesheet.end_date = DateTime.now
+        @worklog.date = @worklog.timesheet.end_date
 
-        end
+        assert @worklog.save
+      end
+
+      should "not set worklog date outside timesheet period" do
+        @worklog.timesheet.end_date = 2.days.ago
+        @worklog.date = DateTime.now
+
+        assert !@worklog.save
+        assert @worklog.errors[:end_date].any?
+        assert_equal ["worklog date is not in timesheet range"], @worklog.errors[:end_date]
+      end
+
+
     end
+
   end
 
 

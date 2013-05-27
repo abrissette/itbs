@@ -17,7 +17,7 @@ class Worklog < ActiveRecord::Base
     def ensure_date_is_in_timesheet_period
       if !timesheet.nil?
 
-        if  (date < timesheet.end_date and date > timesheet.end_date - 7)
+        if  (date <= timesheet.end_date and date > timesheet.end_date - 7)
           return true
         else
           errors.add(:end_date, 'worklog date is not in timesheet range')
