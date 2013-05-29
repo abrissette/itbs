@@ -60,7 +60,7 @@ class WorklogsController < ApplicationController
 
     respond_to do |format|
       if @worklog.update_attributes(params[:worklog])
-        format.html { redirect_to @worklog, notice: 'Worklog was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Worklog was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
