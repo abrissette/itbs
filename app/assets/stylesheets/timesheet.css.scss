@@ -1,3 +1,13 @@
 // Place all the styles related to the timesheet controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* An entry in the timesheet */
+form {
+  overflow: auto;
+  border-bottom: 1px dotted #77d;
+}
+
+
+

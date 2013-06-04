@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Timesheet</th>
     <th>Date</th>
     <th>Description</th>
     <th>Project</th>
@@ -14,6 +15,7 @@
 
 <% @worklogs.each do |worklog| %>
   <tr>
+    <td><%= worklog.timesheet.employee.employee_number if worklog.timesheet %>
     <td><%= worklog.date %>
     <td><%= worklog.description %>
     <td><%= worklog.project.name %>

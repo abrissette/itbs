@@ -44,7 +44,7 @@ class WorklogsController < ApplicationController
 
     respond_to do |format|
       if @worklog.save
-        format.html { redirect_to @worklog, notice: 'Worklog was successfully created.' }
+        format.html { redirect_to :back, notice: 'Worklog was successfully created.' }
         format.json { render json: @worklog, status: :created, location: @worklog }
       else
         format.html { render action: "new" }
@@ -76,7 +76,7 @@ class WorklogsController < ApplicationController
     @worklog.destroy
 
     respond_to do |format|
-      format.html { redirect_to worklogs_url }
+      format.html { redirect_to :back, notice: 'Worklog was successfully deleted.'}
       format.json { head :no_content }
     end
   end

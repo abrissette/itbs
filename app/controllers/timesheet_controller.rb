@@ -3,7 +3,7 @@ class TimesheetController < ApplicationController
   # GET /timesheet
   # GET /timesheet.json
   def show
-    @timesheet = Timesheet.first
+    @timesheet = Timesheet.last
 
      respond_to do |format|
        format.html # show.html.erb

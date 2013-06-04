@@ -6,3 +6,5 @@
 <h1>Timesheet for <%= @timesheet.employee.jira_username %> for the period ending on <%= @timesheet.end_date %></h1>
 
 <%= render :partial => "shared/worklog", :collection =>@timesheet.worklogs %>
+
+<%= link_to 'New Worklog', new_worklog_path %>
