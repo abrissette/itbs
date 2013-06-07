@@ -21,6 +21,7 @@
 
   <div class="actions">
     <%= f.submit %>
+    <%= link_to 'Destroy', worklog, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 
 <% end %>

@@ -3,7 +3,7 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<h1>Timesheet for <%= @timesheet.employee.jira_username %> for the period ending on <%= @timesheet.end_date %></h1>
+<h3>Timesheet for <%= @timesheet.employee.jira_username %> for the period ending on <%= @timesheet.end_date %></h1>
 
 <%= render :partial => "shared/worklog", :collection =>@timesheet.worklogs %>
 
