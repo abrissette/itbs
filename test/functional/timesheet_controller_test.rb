@@ -14,5 +14,13 @@ class TimesheetControllerTest < ActionController::TestCase
       assert_template :partial => 'shared/_worklog', :count => 2
 
     end
+
+    should "see an additional form at bottom in order to add a new one" do
+      get :show
+      assert_response :success
+      assert false
+
+    end
   end
+
 end
