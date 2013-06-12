@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+Employe:<%= @timesheet.employee.jira_username %><br>
+End Date:<%= @timesheet.end_date %>
+
+</p>
+<%= link_to 'Edit', edit_timesheet_path(@timesheet) %> |
+<%= link_to 'Back', timesheets_path %>

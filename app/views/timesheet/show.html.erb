@@ -3,8 +3,21 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<h3>Timesheet for <%= @timesheet.employee.jira_username %> for the period ending on <%= @timesheet.end_date %></h1>
+<% form_for @timesheet do |f| %>
 
-<%= render :partial => "shared/worklog", :collection =>@timesheet.worklogs %>
+    <h3>Timesheet for <%= @timesheet.employee.jira_username %> for the period ending on <%= @timesheet.end_date %></h3>
 
-<%= link_to 'New Worklog', new_worklog_path %>
+    <% fields_for :worklogs do | builder | %>
+    <p>
+        <div class="entry">
+               <%= builder.date_select(:date) %>
+               <%= builder.collection_select(:project_id, Project.all, :id, :name ) %>
+               <%= builder.collection_select(:type_id, Type.all, :id, :name ) %>
+               <%= builder.text_field(:value, :size => "2" ) %>
+               <%= builder.text_field(:description) %>
+        </div>
+
+        <!--<%= render :partial => "shared/worklog", :collection =>@timesheet.worklogs %>-->
+    <% end %>
+    <p><%= f.submit "Submit" %></p>
+<% end %>
