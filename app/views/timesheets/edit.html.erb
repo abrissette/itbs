@@ -1,6 +1,8 @@
 <h1>Editing timesheet</h1>
 
-<%= render 'form' %>
+Employee: <%= @timesheet.employee.jira_username %><br>
+
+<%= render :partial => 'form' %>
 
 <p>
 <%= link_to 'Show', @timesheet %> |

@@ -1,9 +1,5 @@
-Employee: <%= @timesheet.employee.jira_username %><br>
-Period End:<%= @timesheet.end_date %></h3>
-count of wl is: <%= @timesheet.worklogs.count %>
-
 <% form_for @timesheet do |f| %>
-  <% f.error_messages %>
+  <% if @timesheet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@timesheet.errors.count, "error") %> prohibited this timesheet from being saved:</h2>
 
@@ -15,19 +11,18 @@ count of wl is: <%= @timesheet.worklogs.count %>
     </div>
   <% end %>
 
-
-    <% f.fields_for :worklogs do | builder | %>
     <p>
-       pouette
-        <%= builder.date_select(:date) %>
-        <%= builder.collection_select(:project_id, Project.all, :id, :name ) %>
-        <%= builder.collection_select(:type_id, Type.all, :id, :name ) %>
-        <%= builder.text_field(:value, :size => "2" ) %>
-        <%= builder.text_field(:description) %>
+    End date:<%= f.text_field(:end_date) %>
+  </p>
 
-    <% end %>
+    <% if @timesheet.worklogs.any? %>
+      <%= render :partial => 'shared/worklog', :locals => { :f => f, :worklog => @timesheet.worklogs } %>
+    <% else -%>
+      <%= render :partial => 'shared/worklog', :locals => { :f => f, :worklog => @partner_configuration } %>
+    <% end -%>
 
     <p><%= f.submit "Submit" %></p>
 <% end %>
+count of wl is: <%= @timesheet.worklogs.count %>
 
 

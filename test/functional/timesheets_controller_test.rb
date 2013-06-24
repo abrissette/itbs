@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TimesheetsControllerTest < ActionController::TestCase
   setup do
-    @timesheet = timesheets(:one)
+    @timesheet = timesheets(:timesheet_for_andre_with_two_worklog)
   end
 
   test "should get index" do
@@ -13,15 +13,16 @@ class TimesheetsControllerTest < ActionController::TestCase
 
   test "should get new" do
     get :new
-    assert_response :success
+
+    assert false
   end
 
-  test "should create timesheet" do
+  test "should not allow timesheet creation" do
     assert_difference('Timesheet.count') do
       post :create, timesheet: {  }
     end
 
-    assert_redirected_to timesheet_path(assigns(:timesheet))
+    assert false
   end
 
   test "should show timesheet" do
