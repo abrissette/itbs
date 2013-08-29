@@ -11,18 +11,16 @@ class TimesheetsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:timesheets)
   end
 
-  test "should get new" do
-    get :new
-
-    assert false
+  test "should not get new" do
+    assert_raise AbstractController::ActionNotFound do
+      get :new
+    end
   end
 
   test "should not allow timesheet creation" do
-    assert_difference('Timesheet.count') do
+    assert_raise AbstractController::ActionNotFound do
       post :create, timesheet: {  }
     end
-
-    assert false
   end
 
   test "should show timesheet" do
@@ -41,10 +39,8 @@ class TimesheetsControllerTest < ActionController::TestCase
   end
 
   test "should not allow destroy timesheet" do
-    assert_difference('Timesheet.count', 0) do
+    assert_raise AbstractController::ActionNotFound do
       delete :destroy, id: @timesheet
     end
-
-    assert_redirected_to timesheets_path
   end
 end

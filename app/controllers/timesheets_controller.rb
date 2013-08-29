@@ -42,15 +42,4 @@ class TimesheetsController < ApplicationController
     end
   end
 
-  # DELETE /timesheets/1
-  # DELETE /timesheets/1.json
-  def destroy
-    @timesheet = Timesheet.find(params[:id])
-    @timesheet.destroy
-
-    respond_to do |format|
-      format.html { redirect_to timesheets_url }
-      format.json { head :no_content }
-    end
-  end
 end
