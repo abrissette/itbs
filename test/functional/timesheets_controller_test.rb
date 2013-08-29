@@ -40,8 +40,8 @@ class TimesheetsControllerTest < ActionController::TestCase
     assert_redirected_to timesheet_path(assigns(:timesheet))
   end
 
-  test "should destroy timesheet" do
-    assert_difference('Timesheet.count', -1) do
+  test "should not allow destroy timesheet" do
+    assert_difference('Timesheet.count', 0) do
       delete :destroy, id: @timesheet
     end
 

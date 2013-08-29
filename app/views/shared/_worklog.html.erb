@@ -1,22 +1,10 @@
-<%= form_for(worklog) do |f| %>
-  <% if worklog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(worklog.errors.count, "error") %> prohibited this worklog from being saved:</h2>
-
-      <ul>
-      <% worklog.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<% f.fields_for :worklogs do |builder| -%>
     <div class="entry">
-        <%= f.date_select(:date) %>
-        <%= f.collection_select(:project_id, Project.all, :id, :name ) %>
-        <%= f.collection_select(:type_id, Type.all, :id, :name ) %>
-        <%= f.text_field(:value, :size => "2" ) %>
-      <%= f.text_field(:description) %>
+        <%= builder.date_select(:date) %>
+        <%= builder.collection_select(:project_id, Project.all, :id, :name ) %>
+        <%= builder.collection_select(:type_id, Type.all, :id, :name ) %>
+        <%= builder.text_field(:value, :size => "2" ) %>
+        <%= builder.text_field(:description) %>
     </div>
 
   <div class="actions">

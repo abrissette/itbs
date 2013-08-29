@@ -69,13 +69,13 @@ class WorklogsControllerTest < ActionController::TestCase
   context "when from timesheet page" do
 
     setup do
-      @request.env['HTTP_REFERER'] = 'http://test.host/timesheet/show'
+      @request.env['HTTP_REFERER'] = 'http://test.host/timesheets/show'
     end
 
     should "redirect to timesheet when editing" do
       put :update, id: @worklog, worklog: { date: '2013/02/16', project_id: 1, type_id: 1, value:1  }
 
-      assert_redirected_to :controller => "timesheet", :action => "show"
+      assert_redirected_to :controller => "timesheets", :action => "show"
     end
 
     should "redirect to timesheet when deleting" do
@@ -83,7 +83,7 @@ class WorklogsControllerTest < ActionController::TestCase
             delete :destroy, id: @worklog
           end
 
-          assert_redirected_to :controller => "timesheet", :action => "show"
+          assert_redirected_to :controller => "timesheets", :action => "show"
     end
   end
 

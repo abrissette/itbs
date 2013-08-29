@@ -1,4 +1,4 @@
-<% form_for @timesheet do |f| %>
+<%= form_for(@timesheet) do |f| %>
   <% if @timesheet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@timesheet.errors.count, "error") %> prohibited this timesheet from being saved:</h2>
@@ -15,14 +15,11 @@
     End date:<%= f.text_field(:end_date) %>
   </p>
 
-    <% if @timesheet.worklogs.any? %>
-      <%= render :partial => 'shared/worklog', :locals => { :f => f, :worklog => @timesheet.worklogs } %>
-    <% else -%>
-      <%= render :partial => 'shared/worklog', :locals => { :f => f, :worklog => @partner_configuration } %>
-    <% end -%>
+    <%= f.fields_for :worklogs do |builder| %>
+        <%= render 'worklog_fields', f: builder %>
+    <% end %>
 
-    <p><%= f.submit "Submit" %></p>
+    <p>
+    <%= f.submit "Submit" %></p>
 <% end %>
-count of wl is: <%= @timesheet.worklogs.count %>
-
 
