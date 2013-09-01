@@ -18,8 +18,7 @@
     <%= f.fields_for :worklogs do |builder| %>
         <%= render 'worklog_fields', f: builder %>
     <% end %>
-
-    <p>
-    <%= f.submit "Submit" %></p>
+    <p><%= link_to_add_fields "Add Worklog", f, :worklogs %></p>
+    <p><%= f.submit "Submit" %></p>
 <% end %>
 

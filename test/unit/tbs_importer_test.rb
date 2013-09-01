@@ -1,6 +1,7 @@
 require 'test_helper'
 
-class TbsImporterTest < ActiveSupport::TestCase
+class
+    TbsImporterTest < ActiveSupport::TestCase
 
   context "when exporting timesheet to a tbs file" do
     should "serialize worklogs within line with fields correctly position" do

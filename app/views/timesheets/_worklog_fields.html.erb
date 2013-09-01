@@ -5,5 +5,5 @@
         <%= f.text_field(:value, :size => "2" ) %>
         <%= f.text_field(:description) %>
         <%= f.hidden_field :_destroy %>
-        <%= link_to_function "remove", "remove_fields(this)" %>
+        <%= link_to_remove_fields "remove", f %>
 </p>

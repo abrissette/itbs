@@ -1,5 +1,5 @@
 class Timesheet < ActiveRecord::Base
-  attr_accessible :end_date, :employee, :questions_attributes
+  attr_accessible :end_date, :employee, :worklogs_attributes
 
   validates :end_date, :employee, :presence => true
 
