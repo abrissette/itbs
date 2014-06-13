@@ -5,8 +5,7 @@ Itbs::Application.routes.draw do
   resources :worklogs
 
   namespace :admin do
-    resources :types
-    resources :projects
+    resources :types, :projects
   end
 
   # The priority is based upon order of creation:
