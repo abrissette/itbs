@@ -11,36 +11,31 @@ class TimesheetsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:timesheets)
   end
 
-  test "should not get new" do
-    assert_raise AbstractController::ActionNotFound do
+  test "should not be able to access form to manually create timesheet" do
+    assert_raise ActionController::RoutingError do
       get :new
     end
   end
 
-  test "should not allow timesheet creation" do
-    assert_raise AbstractController::ActionNotFound do
+  test "should not allow timesheet creation from UI" do
+    assert_raise ActionController::RoutingError do
       post :create, timesheet: {  }
     end
   end
 
-  test "should show timesheet" do
+  test "should show a timesheet in view mode" do
     get :show, id: @timesheet
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get a timesheet for edit" do
     get :edit, id: @timesheet
     assert_response :success
   end
 
-  test "should update timesheet" do
+  test "should update a timesheet" do
     put :update, id: @timesheet, timesheet: {  }
     assert_redirected_to timesheet_path(assigns(:timesheet))
   end
 
-  test "should not allow destroy timesheet" do
-    assert_raise AbstractController::ActionNotFound do
-      delete :destroy, id: @timesheet
-    end
-  end
 end

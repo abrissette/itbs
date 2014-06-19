@@ -1,10 +1,9 @@
 Itbs::Application.routes.draw do
 
-  resources :timesheets
-
-  resources :worklogs
+  resources :timesheets,  except: [:new, :create]
 
   namespace :admin do
+    resources :worklogs
     resources :types, :projects
   end
 

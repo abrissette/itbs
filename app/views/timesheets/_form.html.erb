@@ -1,22 +1,7 @@
 <%= form_for(@timesheet) do |f| %>
-  <% if @timesheet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@timesheet.errors.count, "error") %> prohibited this timesheet from being saved:</h2>
-
-      <ul>
-      <% @timesheet.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-    <p>
-    End date:<%= f.text_field(:end_date) %>
-  </p>
 
     <%= f.fields_for :worklogs do |builder| %>
-        <%= render 'worklog_fields', f: builder %>
+        <%= render 'worklog_fields', :f => builder %>
     <% end %>
     <p><%= link_to_add_fields "Add Worklog", f, :worklogs %></p>
     <p><%= f.submit "Submit" %></p>
