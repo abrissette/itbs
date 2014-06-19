@@ -1,33 +1,9 @@
-Employee: <%= @timesheet.employee.jira_username %><br>
-Period End:<%= @timesheet.end_date %></h3>
-count of wl is: <%= @timesheet.worklogs.count %>
+<%= form_for(@timesheet) do |f| %>
 
-<% form_for @timesheet do |f| %>
-  <% f.error_messages %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@timesheet.errors.count, "error") %> prohibited this timesheet from being saved:</h2>
-
-      <ul>
-      <% @timesheet.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-    <% f.fields_for :worklogs do | builder | %>
-    <p>
-       pouette
-        <%= builder.date_select(:date) %>
-        <%= builder.collection_select(:project_id, Project.all, :id, :name ) %>
-        <%= builder.collection_select(:type_id, Type.all, :id, :name ) %>
-        <%= builder.text_field(:value, :size => "2" ) %>
-        <%= builder.text_field(:description) %>
-
+    <%= f.fields_for :worklogs do |builder| %>
+        <%= render 'worklog_fields', :f => builder %>
     <% end %>
-
+    <p><%= link_to_add_fields "Add Worklog", f, :worklogs %></p>
     <p><%= f.submit "Submit" %></p>
 <% end %>
-
 

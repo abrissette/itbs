@@ -1,0 +1,9 @@
+<p class="fields">
+        <%= f.date_select(:date) %>
+        <%= f.collection_select(:project_id, Project.all, :id, :name ) %>
+        <%= f.collection_select(:type_id, Type.all, :id, :name ) %>
+        <%= f.text_field(:value, :size => "2" ) %>
+        <%= f.text_field(:description) %>
+        <%= f.hidden_field :_destroy %>
+        <%= link_to_remove_fields "remove", f %>
+</p>

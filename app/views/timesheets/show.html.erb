@@ -3,6 +3,27 @@
 Employe:<%= @timesheet.employee.jira_username %><br>
 End Date:<%= @timesheet.end_date %>
 
+<table>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @timesheet.worklogs.each do | worklog |%>
+    <tr>
+        <td><%= worklog.date %></td>
+        <td><%= worklog.project.name %></td>
+        <td><%= worklog.type.name %></td>
+        <td><%= worklog.value %></td>
+        <td><%= worklog.description %></td>
+    </tr>
+    <% end %>
+</table>
+
+
 </p>
 <%= link_to 'Edit', edit_timesheet_path(@timesheet) %> |
 <%= link_to 'Back', timesheets_path %>

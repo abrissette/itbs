@@ -21,36 +21,9 @@ class TimesheetsController < ApplicationController
     end
   end
 
-  # GET /timesheets/new
-  # GET /timesheets/new.json
-  def new
-    @timesheet = Timesheet.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @timesheet }
-    end
-  end
-
   # GET /timesheets/1/edit
   def edit
     @timesheet = Timesheet.find(params[:id])
-  end
-
-  # POST /timesheets
-  # POST /timesheets.json
-  def create
-    @timesheet = Timesheet.new(params[:timesheet])
-
-    respond_to do |format|
-      if @timesheet.save
-        format.html { redirect_to @timesheet, notice: 'Timesheet was successfully created.' }
-        format.json { render json: @timesheet, status: :created, location: @timesheet }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @timesheet.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PUT /timesheets/1
@@ -69,15 +42,4 @@ class TimesheetsController < ApplicationController
     end
   end
 
-  # DELETE /timesheets/1
-  # DELETE /timesheets/1.json
-  def destroy
-    @timesheet = Timesheet.find(params[:id])
-    @timesheet.destroy
-
-    respond_to do |format|
-      format.html { redirect_to timesheets_url }
-      format.json { head :no_content }
-    end
-  end
 end

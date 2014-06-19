@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TimesheetsControllerTest < ActionController::TestCase
   setup do
-    @timesheet = timesheets(:one)
+    @timesheet = timesheets(:timesheet_for_andre_with_two_worklog)
   end
 
   test "should get index" do
@@ -11,39 +11,31 @@ class TimesheetsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:timesheets)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
+  test "should not be able to access form to manually create timesheet" do
+    assert_raise ActionController::RoutingError do
+      get :new
+    end
   end
 
-  test "should create timesheet" do
-    assert_difference('Timesheet.count') do
+  test "should not allow timesheet creation from UI" do
+    assert_raise ActionController::RoutingError do
       post :create, timesheet: {  }
     end
-
-    assert_redirected_to timesheet_path(assigns(:timesheet))
   end
 
-  test "should show timesheet" do
+  test "should show a timesheet in view mode" do
     get :show, id: @timesheet
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get a timesheet for edit" do
     get :edit, id: @timesheet
     assert_response :success
   end
 
-  test "should update timesheet" do
+  test "should update a timesheet" do
     put :update, id: @timesheet, timesheet: {  }
     assert_redirected_to timesheet_path(assigns(:timesheet))
   end
 
-  test "should destroy timesheet" do
-    assert_difference('Timesheet.count', -1) do
-      delete :destroy, id: @timesheet
-    end
-
-    assert_redirected_to timesheets_path
-  end
 end

@@ -1,12 +1,10 @@
 Itbs::Application.routes.draw do
 
-  resources :timesheets
-
-  resources :worklogs
+  resources :timesheets,  except: [:new, :create]
 
   namespace :admin do
-    resources :types
-    resources :projects
+    resources :worklogs
+    resources :types, :projects
   end
 
   # The priority is based upon order of creation:
