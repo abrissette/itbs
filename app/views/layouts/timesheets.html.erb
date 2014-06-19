@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Timesheet</title>
+
+  <%= stylesheet_link_tag    "timesheets", :media => "all" %>
+  <%= javascript_include_tag "timesheets" %>
+  <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="./css/master.css" />
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <script src="./js/tester.js"></script>
+  <script src="./js/jquery.hotkeys.js"></script>
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css" /> -->
+  <script>
+
+    String.prototype.trim = function() {
+        return this.replace(/^\s+|\s+$/g, "");
+    };
+    String.prototype.chop_parens = function(){
+      return this.replace(/\(.*\)/g, "");
+    }
+    function split(val, separator) {
+      return val.split(eval('/'+separator+'\s*/'));
+    }
+
+
+  $.time_parser = function time_parser(){
+    var tp = this,
+        val,
+        hours,
+        mins,
+        dot_mins;
+
+    tp.value = function(value) {
+      if(typeof(value) == 'undefined'){
+        return this.get_value();
+      }else {
+        return this.set_value(value);
+      }
+    };
+    tp.get_value = function() {
+      return tp.val;
+    };
+    tp.set_value = function(value) {
+      tp.val = tp.clean_string(value);
+    };
+    tp.clean_string = function(value){
+      return value.replace(/\s{1,}/g,'').replace(',','.');
+    };
+    tp.parse = function(value){
+      tp.set_value(value);
+
+      if(match = (/^(\d{0,2})\s?h?$/).exec(tp.val)){
+        // console.log('just hours');
+        tp.hours    = match[1];
+        tp.dot_mins = 0;
+        tp.mins     = 0;
+      }else if (match = (/^([0-6]?\d|[0-9])m$/).exec(tp.val)){
+        // console.log('just minutes');
+        tp.hours    = 0;
+        tp.dot_mins = match[1]/60;
+        tp.mins     = match[1];
+
+      }else if (match = (/^(\d{0,2})(\.+\d{0,2})$/).exec(tp.val)){
+        // console.log('is dot notation');
+        tp.hours    = match[1] === "" ? 0:match[1];
+        tp.dot_mins = match[2];
+        tp.mins     = match[2]*60;
+      } else if(match = (/^([01]?\d|2[0-3])[:h]?([0-5]\d)[m]?$/).exec(value)){
+        // console.log('is clock notation');
+        tp.hours    = match[1];
+        tp.dot_mins = match[2]/60;
+        tp.mins     = match[2];
+      }
+      //force float
+      tp.hours    = parseFloat(tp.hours);
+      tp.dot_mins = parseFloat(tp.dot_mins);
+      tp.mins     = parseFloat(tp.mins);
+      return (tp.hours + tp.dot_mins).toFixed(2);
+    }; // parse
+  }; // time_parser
+
+
+
+    $.widget( "custom.catcomplete", $.ui.autocomplete, {
+    _renderMenu: function( ul, items ) {
+      var that = this,
+        currentCategory = "";
+      $.each( items, function( index, item ) {
+        if ( item.category != currentCategory ) {
+          ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+          currentCategory = item.category;
+        }
+        that._renderItemData( ul, item );
+      });
+    }
+  });
+
+  $(function() {
+
+
+    var projects = [
+          { label:  '603002 - iLove Server Design',                value : '603002'         },
+          { label:  '603003 - iLove Server Development',           value : '603003'          },
+          { label:  '603008 - Mobile Design (Android & iOS)',      value : '603008'          },
+          { label:  '603009 - Mobile Development (Android & iOS)', value : '603009'          }
+    ];
+    var work_codes = [
+          { value : '7050000', category: '', label: '7000 - Project Management'},
+          { value : '7050', category: '', label: '7050 - Resource Planning (Sprint Planning)'},
+          { value : '7100', category: '', label: '7100 - User Interface Design'},
+          { value : '7130', category: '', label: '7130 - Tech Spec - Requirements (Backlog Maintenance, Technical Research etc...)'},
+          { value : '7140', category: '', label: '7140 - Design Test Case'},
+          { value : '7210', category: '', label: '7210 - Code Plan/Design (Group design session, Modelization ..)'},
+          { value : '7220', category: '', label: '7220 - Technical Review/Support'},
+          { value : '7230', category: '', label: '7230 - Programming / Code'},
+          { value : '7240', category: '', label: '7240 - Code Review (Pull Request, Pair Review...)'},
+          { value : '7250', category: '', label: '7250 - Unit Testing'},
+          { value : '7414', category: '', label: '7414 - Application Installation (Deployment, install, configure)'},
+          // { value : '7416', category: '', label: '7416 - Application Configuration (System Parameters Set-up, Configuration Mapping)'},
+          { value : '7520', category: '', label: '7520 - Integrated Testing'},
+          { value : '7530', category: '', label: '7530 - Performance Testing'},
+          { value : '7540', category: '', label: '7540 - ?Interface Testing (3rd party integration testing)'},
+          { value : '7700', category: '', label: '7700 - ?Configuration Management Misc.'},
+          { value : '7900', category: '', label: '7900 - Documentation Misc.'},
+          { value : '8310', category: '', label: '8310 - Issue Analysis/Review (ex:Bug investigation)'},
+          { value : '9810', category: '', label: '9810 - Internal Reports'},
+          { value : '9910', category: '', label: '9910 - Internal Training (ex:New employee self Training...)'},
+          { value : '9921', category: '', label: '9921 - Time Reporting'},
+          { value : '9940', category: '', label: '9940 - Staff Meeting (Daily Meeting, Sprint Review, Retrospective)'},
+          { value : '9924', category: '', label: '9924 - TBS Review'},
+          { value : '9925', category: '', label: '9925 - Recruiting'},
+          { value : '9990', category: '', label: '9990 - Vacation'},
+          { value : '9991', category: '', label: '9991 - illness'},
+          { value : '9993', category: '', label: '9993 - Absence'},
+          { value : '9964', category: '', label: '9964 - Travel Arrangements'},
+          { value : '9960', category: '', label: '9960 - Travel Non-Billable'},
+          { value : '9935', category: '', label: '9935 - Staff management'},
+          { value : '9930', category: '', label: '9930 - Corporate Management'},
+          { value : '9962', category: '', label: '9962 - Travel Expense Report'},
+          { value : '9992', category: '', label: '9992 - Exams/Study Leave'},
+          { value : '9974', category: '', label: '9974 - Maintenance'}
+    ];
+
+    // var accentMap = {
+    //   "é": "e",
+    //   "è": "e"
+    // };
+    // var normalize = function( term ) {
+    //   var ret = "";
+    //   for ( var i = 0; i < term.length; i++ ) {
+    //     ret += accentMap[ term.charAt(i) ] || term.charAt(i);
+    //   }
+    //   return ret;
+    // };
+
+    function get_field_selector_to_focus($sender){
+      var selector;
+      if($sender.hasClass('date')){
+        selector = 'date';
+      } else if($sender.hasClass('project_id')){
+        selector = 'project_id';
+      } else if($sender.hasClass('work_code')){
+        selector = 'work_code';
+      } else if($sender.hasClass('duration')){
+        selector = 'duration';
+      }
+      return 'input.'+selector;
+    } // get_field_selector_to_focus
+
+
+    var grid = {
+      selector : '#grid',
+      boot : function(){
+        this.create_row({'directive':'end'});
+        this.bind_events();
+      },
+      bind_events : function(){
+        row.bind_events();
+        $('.add_row_before')
+          .unbind('click')
+          .bind('click',function(){
+            grid.create_row({'directive':'before', 'sender': this });
+          });
+
+        $('.add_row_after')
+          .unbind('click')
+          .bind('click', function(){
+            grid.create_row({'directive':'after', 'sender': this });
+          });
+
+        $('.delete_this_row')
+          .unbind('click')
+          .bind('click', function(){
+            grid.delete_row(this);
+          });
+
+        // --------- sortable
+        $( ".sortable" ).sortable({
+          placeholder: "ui-state-highlight",
+          stop: function( event, ui ) { grid.sum_all_days(); }
+        }).disableSelection();
+        // --------- sortable
+      },
+      create_row:function(params){
+        switch(params.directive){
+          case 'before':            $(params.sender).parent().parent().before(row.create());            break;
+          case 'after':            $(params.sender).parent().parent().after(row.create());            break;
+          case 'end':            $(this.selector).append(row.create());            break;
+        }
+        this.bind_events();
+      },
+      delete_row : function(sender){
+        $(sender).parent().parent().remove();
+      },
+      // date (string) : '2013-01-22'
+      sum_day : function(date){
+          var sum_day = 0,
+              day_elems = $(":input.date").filter(function () { return $(this).val() == date; }),
+              cumul_class;
+
+              day_elems.each(function(i, elem){
+                sum_day += parseFloat($(elem).parent().find('.duration').val());
+
+                if(sum_day == 8){
+                  cumul_class = 'even';
+                }else if(sum_day > 8){
+                  cumul_class = 'over'
+                }
+
+                $(elem).parent().find('.cumul').html(sum_day).removeClass('even over').addClass(cumul_class);
+              });
+      },
+      sum_all_days : function(){
+        var fields = $('#grid').find('.date'),
+            values = [],
+            // to sum is a array of date fields
+            to_sum = $.grep(fields, function(item){
+                    var date = $(item).val();
+                    if($.inArray(date, values) == -1){
+                      values.push(date);
+                      return true;
+                    }
+                  });
+            $(to_sum).each(function(){
+              grid.sum_day($(this).val());
+            });
+      },
+      update_total_label: function(){
+          var total = 0;
+          $('input.duration').each(function(i, field){
+            if(field.value !== ""){
+              total += parseFloat(field.value);
+            }
+          });
+          $('footer span.total').html(total);
+      }
+    };
+
+    var row = {
+      create : function(){
+        return this.markup();
+      },
+      markup : function(){
+        var markup_row = $('<li class="row ui-state-default clearfix"></li>');
+        var markup_fields = $('.row-markup').clone().children().children().each(function(i, item){
+          var class_name = $(item).prop('class').replace('tmp-','');
+          return $(item).prop("class",class_name);
+        });
+        markup_row.append(markup_fields);
+        return markup_row;
+      },
+      bind_events : function(){
+        $('.row input').focus(function(){
+          if($(this).parent().hasClass('selected')){        return;      }
+          $('.row').removeClass('selected');
+          $(this).parent().addClass('selected');
+        });
+
+        $('input.date, input.project_id, input.work_code, input.duration').bind('keydown', 'alt+up', function(e) {
+          selector = get_field_selector_to_focus($(this));
+          $(this).parent().prev().find(selector).focus();
+        });
+        $('input.date, input.project_id, input.work_code, input.duration').bind('keydown', 'alt+down', function(e) {
+          selector = get_field_selector_to_focus($(this));
+          $(this).parent().next().find(selector).focus();
+        });
+
+        $( ".date" ).datepicker({      dateFormat:'yy-mm-dd'    }).blur(function(){
+          grid.sum_all_days();
+        });
+
+        $( "input.project_id" ).autocomplete({
+          source: function( request, response ) {
+            var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+            response( $.grep( projects, function( item ) {
+              value = item.value+' - '+item.label || item.value || value;
+              return matcher.test( item.label ); // || matcher.test( normalize( value ) );
+            }) );
+          }
+        });
+
+
+
+
+
+        $('input.duration').blur(function(){
+          var value = $.trim( $(this).val() );
+          var tp = new $.time_parser();
+            $(this).val(tp.parse(value));
+            if(value === ''){ row.mark.bad(this);          return false;   }
+
+          row.mark.good(this);
+          grid.sum_day($(this).parent().find('.date').val());
+          grid.update_total_label();
+        });
+
+        $( "input.work_code" ).catcomplete({
+          delay: 0,
+          source: function( request, response ) {
+            var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+            response( $.grep( work_codes, function( item ) {
+              value = item.value+' - '+item.label || item.value || value;
+              return matcher.test( item.label ); // || matcher.test( normalize( value ) );
+            }) );
+          },
+          select: function(event, ui) {
+                var terms = split(ui.item.label, ' - ');
+                  terms.shift();
+                var term = terms.toString();
+                  $(this).parent().find('.work_code_desc').html(term.chop_parens());
+                return false;
+            }
+        });
+
+      }, // bind_events
+      mark : {
+        bad : function(elem){
+          $(elem).css('outline','1px solid red');
+        },
+        good: function(elem){
+          $(elem).css('outline','0 none');
+        }
+      } // mark
+    }; // end row object
+
+    grid.boot();
+
+  });
+  </script>
+
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

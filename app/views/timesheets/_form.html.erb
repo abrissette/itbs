@@ -1,33 +1,91 @@
-Employee: <%= @timesheet.employee.jira_username %><br>
-Period End:<%= @timesheet.end_date %></h3>
-count of wl is: <%= @timesheet.worklogs.count %>
 
-<% form_for @timesheet do |f| %>
-  <% f.error_messages %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@timesheet.errors.count, "error") %> prohibited this timesheet from being saved:</h2>
+Name: <%= @timesheet.employee.jira_username %><br>
+Period end: <%= @timesheet.end_date %>
+<hr>
 
-      <ul>
-      <% @timesheet.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+<div class="wrap">
+
+  <!--  <%= form_for @timesheet do |ts_form| %> -->
+
+        <header class="clearfix">
+          <label class="date">Date</label>
+          <label class="project_id">Project</label>
+          <label class="work_code">Work code</label>
+          <label class="duration">Time</label>
+          <label class="cumul">cumul</label>
+          <label class="work_code_desc">----</label>
+          <label class="notes">Notes</label>
+        </header>
+
+
+      <ul id="grid" class="ui-widget sortable">
+        <!-- rows here -->
+
+        <%= ts_form.fields_for :worklogs do | wrk_fields | %>
+
+            <li class="row ui-state-default clearfix">
+            <span class="ui-icon ui-icon-grip-dotted-horizontal"></span>
+
+                <div class="date hasDatepicker"><%= wrk_fields.text_field :date %></div>
+                <div class="tmp-project_id"><%= wrk_fields.text_field :project_id %></div>
+                <div class="tmp-work_code"><%= wrk_fields.text_field :type_id %></div>
+                <div class="tmp-duration"><%= wrk_fields.text_field :value %></div>
+
+                <label class="tmp-cumul"></label>
+                <label class="tmp-work_code_desc"></label>
+
+                <div class="tmp-notes"><%= wrk_fields.text_field :description %></div>
+                <div class="actions">
+                    <a href="#" class="add_row_before ui-state-default ui-corner-all" title="Add row before"></a>
+                    <a href="#" class="add_row_after ui-state-default ui-corner-all" title="Add row after"></a>
+                    <a href="#" class="delete_this_row ui-state-default ui-corner-all" title="Delete row"></a>
+                </div>
+             <span class="ui-icon ui-icon-grip-dotted-horizontal"></span>
+             </li>
+
+           <% end %>
+
       </ul>
-    </div>
-  <% end %>
+        <footer class="clearfix">
+          <label class="date">Date</label>
+          <label class="project_id">Project</label>
+          <label class="work_code">Work code</label>
+          <label class="duration">Time : <span class="total"></span></label>
+          <label class="cumul"></label>
+          <label class="work_code_desc">----</label>
+          <label class="notes">Notes</label>
+        </footer>
 
-
-    <% f.fields_for :worklogs do | builder | %>
-    <p>
-       pouette
-        <%= builder.date_select(:date) %>
-        <%= builder.collection_select(:project_id, Project.all, :id, :name ) %>
-        <%= builder.collection_select(:type_id, Type.all, :id, :name ) %>
-        <%= builder.text_field(:value, :size => "2" ) %>
-        <%= builder.text_field(:description) %>
-
+      <!--    <p><%= ts_form.submit "Submit" %></p>   -->
     <% end %>
 
-    <p><%= f.submit "Submit" %></p>
-<% end %>
+    </div>
+
+    <!-- this input is there to prevent defaut behavior on tab keypress when we are on the
+    last form element of the page, the location bar gets selected, now this input will get
+    the focus -->
+    <!-- <input id="catcher"/> -->
+
+    <div class="row-markup" style="display:none;">
+        <li class="row ui-state-default clearfix">
+          <span class="ui-icon ui-icon-grip-dotted-horizontal"></span>
+          <input class="tmp-date" />
+          <input class="tmp-project_id" />
+          <input class="tmp-work_code" />
+          <input class="tmp-duration" />
+          <label class="tmp-cumul"></label>
+          <label class="tmp-work_code_desc"></label>
+          <input class="tmp-notes" />
+          <div class="actions">
+            <a href="#" class="add_row_before ui-state-default ui-corner-all" title="Add row before"></a>
+            <a href="#" class="add_row_after ui-state-default ui-corner-all" title="Add row after"></a>
+            <a href="#" class="delete_this_row ui-state-default ui-corner-all" title="Delete row"></a>
+          </div>
+          <span class="ui-icon ui-icon-grip-dotted-horizontal"></span>
+        </li>
+    </div>
+
+
+
 
 
