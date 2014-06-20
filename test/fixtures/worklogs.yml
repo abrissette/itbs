@@ -4,7 +4,7 @@ requirement_on_ilove_for_andre:
   date: 2013-05-01
   project: ilove
   type: requirement
-  value: 30
+  value: 2
   description: info on this log
   timesheet: timesheet_for_andre_with_two_worklog
 

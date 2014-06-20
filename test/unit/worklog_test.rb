@@ -68,6 +68,19 @@ class WorklogTest < ActiveSupport::TestCase
 
     end
 
+    context "when exporting to tbs file" do
+      should "serialize worklog in a fixpos format line" do
+
+        expected_line = "219502013050102.012345600713010info on this log                   "
+
+        @worklog = worklogs(:requirement_on_ilove_for_andre)
+
+        worklog_line = @worklog.to_fixpos
+
+        assert_equal expected_line, worklog_line
+      end
+  end
+
   end
 
 

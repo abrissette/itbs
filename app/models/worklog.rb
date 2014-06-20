@@ -12,6 +12,22 @@ class Worklog < ActiveRecord::Base
 
   before_save :ensure_date_is_in_timesheet_period
 
+  def to_fixpos
+
+    raise "can't export worklog without timesheet" if timesheet.nil?
+
+    line = timesheet.employee.employee_number.to_s.ljust(5," ")
+    line += date.strftime("%Y%m%d")
+    line += sprintf("%04.1f",value)
+    line += project.code.ljust(6," ")
+    line += "00"
+    line += type.code.ljust(4," ")
+    line += "10"
+    line += description.ljust(35," ")
+
+    return line
+  end
+
   private
 
     def ensure_date_is_in_timesheet_period
@@ -25,4 +41,5 @@ class Worklog < ActiveRecord::Base
         end
       end
     end
+
 end
