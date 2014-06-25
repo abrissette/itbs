@@ -1,6 +1,18 @@
+
 <%= form_for(@timesheet) do |f| %>
 
     <%= f.fields_for :worklogs do |builder| %>
+
+        <% if builder.object.errors.any? %>
+            <div id="error_explanation">
+                <ul>
+                    <% builder.object.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
         <%= render 'worklog_fields', :f => builder %>
     <% end %>
     <p><%= link_to_add_fields "Add Worklog", f, :worklogs %></p>
