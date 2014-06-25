@@ -1,0 +1,37 @@
+<%= form_for(@admin_employee) do |f| %>
+  <% if @admin_employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_employee.errors.count, "error") %> prohibited this admin_employee from being saved:</h2>
+
+      <ul>
+      <% @admin_employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :jira_username %><br />
+    <%= f.text_field :jira_username %>
+  </div>
+  <div class="field">
+    <%= f.label :tempo_staff_id %><br />
+    <%= f.text_field :tempo_staff_id %>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :employee_number %><br />
+    <%= f.text_field :employee_number %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

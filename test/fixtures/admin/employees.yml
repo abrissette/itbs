@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  jira_username: MyString
+  tempo_staff_id: MyString
+  number: MyString
+  employee_number: MyString
+  email: MyString
+
+two:
+  jira_username: MyString
+  tempo_staff_id: MyString
+  number: MyString
+  employee_number: MyString
+  email: MyString
