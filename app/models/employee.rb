@@ -1,7 +1,9 @@
 class Employee < ActiveRecord::Base
   attr_accessible :employee_number, :jira_username, :tempo_staff_id
 
-  validates :employee_number, :jira_username, :tempo_staff_id, :presence => true
+  validates :employee_number, :tempo_staff_id, :presence => true
+
+  validates :jira_username, :presence => true, :uniqueness => true
 
   has_many :timesheets
 
@@ -13,7 +15,7 @@ class Employee < ActiveRecord::Base
         if timesheets.empty?
           return true
         else
-          errors.add(:base, 'Referenced by timesheet')
+          errors.add(:base, 'This employee is still linked to a timesheet')
           return false
         end
     end
