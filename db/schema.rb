@@ -17,23 +17,23 @@ ActiveRecord::Schema.define(:version => 20140625184359) do
     t.string   "jira_username"
     t.string   "tempo_staff_id"
     t.string   "employee_number"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
     t.string   "email"
     t.boolean  "is_admin",        :default => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
-  create_table "projects", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "projects",        :force => true do |t|
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "code"
     t.string   "name"
   end
 
-  create_table "timesheets", :force => true do |t|
+  create_table "timesheets",      :force => true do |t|
     t.date     "end_date"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "employee_id"
   end
 

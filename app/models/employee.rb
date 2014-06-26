@@ -1,5 +1,5 @@
 class Employee < ActiveRecord::Base
-  attr_accessible :employee_number, :jira_username, :tempo_staff_id
+  attr_accessible :employee_number, :jira_username, :tempo_staff_id, :email
 
   validates :employee_number, :tempo_staff_id, :presence => true
 

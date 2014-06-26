@@ -3,9 +3,14 @@
 Andre:
   jira_username: andre.brissette@jestadigital.com
   tempo_staff_id: andre.brissette@jestadigital.com
+  email: andre.brissette@jestadigital.com
+  is_admin: true
   employee_number: 21950
 
 Martin:
   jira_username: martin.trepanier@jestadigital.com
   tempo_staff_id: martin.trepanier@jestadigital.com
+  email: martin.trepanier@jestadigital.com
+  is_admin: false
   employee_number: 28900
+

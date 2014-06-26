@@ -2,29 +2,24 @@
 
 <p>
   <b>Jira username:</b>
-  <%= @admin_employee.jira_username %>
+  <%= @employee.jira_username %>
 </p>
 
 <p>
   <b>Tempo staff:</b>
-  <%= @admin_employee.tempo_staff_id %>
-</p>
-
-<p>
-  <b>Number:</b>
-  <%= @admin_employee.number %>
+  <%= @employee.tempo_staff_id %>
 </p>
 
 <p>
   <b>Employee number:</b>
-  <%= @admin_employee.employee_number %>
+  <%= @employee.employee_number %>
 </p>
 
 <p>
   <b>Email:</b>
-  <%= @admin_employee.email %>
+  <%= @employee.email %>
 </p>
 
 
-<%= link_to 'Edit', edit_admin_employee_path(@admin_employee) %> |
+<%= link_to 'Edit', edit_admin_employee_path(@employee) %> |
 <%= link_to 'Back', admin_employees_path %>

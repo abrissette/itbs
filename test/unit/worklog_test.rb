@@ -65,7 +65,6 @@ class WorklogTest < ActiveSupport::TestCase
         assert_equal ["worklog date is not in timesheet range"], @worklog.errors[:end_date]
       end
 
-
     end
 
     context "when exporting to tbs file" do
