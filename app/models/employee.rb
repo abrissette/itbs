@@ -1,11 +1,13 @@
 class Employee < ActiveRecord::Base
-  attr_accessible :employee_number, :jira_username, :tempo_staff_id, :email
+  attr_accessible :employee_number, :jira_username, :tempo_staff_id, :email, :password, :password_comfirmation
 
   validates :employee_number, :tempo_staff_id, :presence => true
 
   validates :jira_username, :presence => true, :uniqueness => true
 
   has_many :timesheets
+
+  has_secure_password
 
   before_destroy :ensure_not_referenced_by_any_timesheet
 
