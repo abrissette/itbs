@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  skip_before_filter :authorize
+
   def new
   end
 
@@ -6,7 +9,7 @@ class SessionsController < ApplicationController
     employee = Employee.find_all_by_jira_username(:jira_username)
     if employee and employee.authenticate(params[:password])
       session[:employee_id] = employee.id
-      redirect_to admin_url
+      redirect_to timesheet_url
     else
       redirect_to login_url, alert: "Invalid user/password combination"
     end
@@ -14,7 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:employee_id] = nil
-    redirect_to home_url, notice: "Logged out"
+    redirect_to login_url, notice: "Logged out"
 
   end
 end

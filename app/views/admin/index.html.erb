@@ -1,5 +1,11 @@
-<h1>Bienvenue Super User !</h1>
+<h3>Bienvenue super user !</h3>
 
-Il est <%- Time.now %>
+it's <%= Time.now %> <br>
 
 We have <%= pluralize(@total_timesheets, "timesheet") %> in the system.
+</p> </p>
+<ul>
+    <li><%= link_to 'employees', admin_employees_path %></li>
+    <li><%= link_to 'projects', admin_projects_path %></li>
+    <li><%= link_to 'types', admin_types_path %></li>
+</ul>
