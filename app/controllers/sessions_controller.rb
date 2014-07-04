@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    employee = Employee.find_all_by_jira_username(:jira_username)
+    employee = Employee.find_by_jira_username(params[:name])
     if employee and employee.authenticate(params[:password])
       session[:employee_id] = employee.id
-      redirect_to timesheet_url
+      redirect_to timesheets_url
     else
       redirect_to login_url, alert: "Invalid user/password combination"
     end

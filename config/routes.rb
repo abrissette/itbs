@@ -12,7 +12,6 @@ Itbs::Application.routes.draw do
 
   namespace :admin do
     resources :employees
-    resources :worklogs
     resources :types, :projects
   end
 
@@ -66,7 +65,6 @@ Itbs::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root :to => 'timesheets#index', as: 'timesheet'
 
   # See how all your routes lay out with "rake routes"
 

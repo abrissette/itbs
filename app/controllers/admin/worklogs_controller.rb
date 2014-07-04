@@ -1,6 +1,6 @@
-class WorklogsController < ApplicationController
-  # GET /worklogs
-  # GET /worklogs.json
+class Admin::WorklogsController < ApplicationController
+  # GET /admin/worklogs
+  # GET /admin/worklogs.json
   def index
     @worklogs = Worklog.all
 
@@ -10,8 +10,8 @@ class WorklogsController < ApplicationController
     end
   end
 
-  # GET /worklogs/1
-  # GET /worklogs/1.json
+  # GET /admin/worklogs/1
+  # GET /admin/worklogs/1.json
   def show
     @worklog = Worklog.find(params[:id])
 
@@ -21,8 +21,8 @@ class WorklogsController < ApplicationController
     end
   end
 
-  # GET /worklogs/new
-  # GET /worklogs/new.json
+  # GET /admin/worklogs/new
+  # GET /admin/worklogs/new.json
   def new
     @worklog = Worklog.new
 
@@ -32,19 +32,19 @@ class WorklogsController < ApplicationController
     end
   end
 
-  # GET /worklogs/1/edit
+  # GET /admin/worklogs/1/edit
   def edit
     @worklog = Worklog.find(params[:id])
   end
 
-  # POST /worklogs
-  # POST /worklogs.json
+  # POST /admin/worklogs
+  # POST /admin/worklogs.json
   def create
     @worklog = Worklog.new(params[:worklog])
 
     respond_to do |format|
       if @worklog.save
-        format.html { redirect_to :back, notice: 'Worklog was successfully created.' }
+        format.html { redirect_to admin_worklog_path(@worklog), notice: 'Worklog was successfully created.' }
         format.json { render json: @worklog, status: :created, location: @worklog }
       else
         format.html { render action: "new" }
@@ -53,14 +53,14 @@ class WorklogsController < ApplicationController
     end
   end
 
-  # PUT /worklogs/1
-  # PUT /worklogs/1.json
+  # PUT /admin/worklogs/1
+  # PUT /admin/worklogs/1.json
   def update
     @worklog = Worklog.find(params[:id])
 
     respond_to do |format|
       if @worklog.update_attributes(params[:worklog])
-        format.html { redirect_to :back, notice: 'Worklog was successfully updated.' }
+        format.html { redirect_to admin_worklog_path(@worklog), notice: 'Worklog was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class WorklogsController < ApplicationController
     @worklog.destroy
 
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Worklog was successfully deleted.'}
+      format.html { redirect_to admin_worklogs_url}
       format.json { head :no_content }
     end
   end

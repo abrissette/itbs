@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class WorklogsControllerTest < ActionController::TestCase
+class Admin::WorklogsControllerTest < ActionController::TestCase
   setup do
     @request.env['HTTP_REFERER'] = 'http://test.host/any'
     @worklog = worklogs(:requirement_on_ilove)
@@ -53,7 +53,7 @@ class WorklogsControllerTest < ActionController::TestCase
     should "redirect to worklog when editing" do
       put :update, id: @worklog, worklog: { date: '2013/02/16', project_id: 1, type_id: 1, value:1  }
 
-      assert_redirected_to :controller => "worklogs"
+      assert_redirected_to admin_worklog_path(assigns(:worklog))
     end
 
 

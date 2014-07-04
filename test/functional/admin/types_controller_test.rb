@@ -38,6 +38,7 @@ class Admin::TypesControllerTest < ActionController::TestCase
 
   test "should update type" do
     put :update, id: @type, type: { code: @type.code, name: @type.name }
+
     assert_redirected_to admin_type_path(assigns(:type))
   end
 
