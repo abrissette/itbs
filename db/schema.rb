@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20130516131734) do
     t.string   "employee_number"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "email"
+    t.string   "password_digest"
   end
 
   create_table "projects", :force => true do |t|
