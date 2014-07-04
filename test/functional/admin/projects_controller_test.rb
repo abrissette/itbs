@@ -39,7 +39,7 @@ class Admin::ProjectsControllerTest < ActionController::TestCase
     assert_redirected_to admin_project_path(assigns(:project))
   end
 
-  test "should not delete project when reference by worklog" do
+  test "should not delete project when referenced by worklog" do
     assert_difference('Project.count', 0) do
       delete :destroy, id: @project
     end
@@ -47,11 +47,11 @@ class Admin::ProjectsControllerTest < ActionController::TestCase
     assert_redirected_to admin_projects_path
   end
 
-  test "Should delete project when not reference by any worklog" do
+  test "Should be able to delete project when not referenced by any worklog" do
     project = Project.create(  code: '000000', name: 'UNUSED PROJECT')
 
     assert_difference('Project.count',-1) do
-      delete :destroy, id: project
+      delete :destroy, id: @project
     end
   end
 

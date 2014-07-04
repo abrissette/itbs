@@ -11,14 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516131734) do
+ActiveRecord::Schema.define(:version => 20140626182716) do
 
   create_table "employees", :force => true do |t|
     t.string   "jira_username"
     t.string   "tempo_staff_id"
     t.string   "employee_number"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "email"
+    t.boolean  "is_admin",        :default => false
+    t.string   "password_digest"
   end
 
   create_table "projects", :force => true do |t|

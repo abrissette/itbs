@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Jira username:</b>
+  <%= @employee.jira_username %>
+</p>
+
+<p>
+  <b>Tempo staff:</b>
+  <%= @employee.tempo_staff_id %>
+</p>
+
+<p>
+  <b>Employee number:</b>
+  <%= @employee.employee_number %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @employee.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_employee_path(@employee) %> |
+<%= link_to 'Back', admin_employees_path %>

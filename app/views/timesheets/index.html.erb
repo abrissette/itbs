@@ -11,9 +11,9 @@
   <tr>
     <td><%= timesheet.end_date %></td>
     <td><%= timesheet.employee.jira_username %></td>
-    <td><%= link_to 'Show', timesheet %></td>
+    <td><%= link_to 'Show', timesheet_path(timesheet) %></td>
     <td><%= link_to 'Edit', edit_timesheet_path(timesheet) %></td>
-    <td><%= link_to 'Destroy', timesheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Destroy', timesheet_path(timesheet), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

@@ -38,6 +38,7 @@ class Admin::TypesControllerTest < ActionController::TestCase
 
   test "should update type" do
     put :update, id: @type, type: { code: @type.code, name: @type.name }
+
     assert_redirected_to admin_type_path(assigns(:type))
   end
 
@@ -49,7 +50,7 @@ class Admin::TypesControllerTest < ActionController::TestCase
     assert_redirected_to admin_types_path
   end
 
-  test "should delete type when not referenced by any worklog" do
+  test "Should be able to delete type when not referenced by any worklog" do
     type =  Type.create(code: '0000', name: 'UNUSED TYPE')
 
     assert_difference('Type.count', -1) do

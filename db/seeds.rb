@@ -34,7 +34,10 @@ types = Type.create([ {code: '7000', name: 'Project Mng'}, \
                             {code: '9964', name: 'Travel Arrangements'}, \
                             {code: '9935', name: 'Staff Management'}])
 
-employees = Employee.create([ {jira_username: 'andre.brissette@jestadigital.com', tempo_staff_id: 'andre.brissette@jestadigital.com', employee_number: '21950'}])
+
+employees = Employee.create([{jira_username: 'andre.brissette@jestadigital.com', tempo_staff_id: 'andre.brissette@jestadigital.com', employee_number: '21950'}])
+employees[0].password_digest = BCrypt::Password.create('1234')
+employees[0].save
 
 
 worklogs = Worklog.create([ {date:'01/05/2013', description:'Make some work', project: projects.first, type: types.first,value:'30'}, \

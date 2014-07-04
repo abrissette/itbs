@@ -1,0 +1,31 @@
+<h1>Listing admin_employees</h1>
+
+<table>
+  <tr>
+    <th>Jira username</th>
+    <th>Tempo staff</th>
+    <th>Number</th>
+    <th>Employee number</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employees.each do |employee| %>
+  <tr>
+    <td><%= employee.jira_username %></td>
+    <td><%= employee.tempo_staff_id %></td>
+    <td><%= employee.employee_number %></td>
+    <td><%= employee.employee_number %></td>
+    <td><%= employee.email %></td>
+    <td><%= link_to 'Show', admin_employee_path(employee) %></td>
+    <td><%= link_to 'Edit', edit_admin_employee_path(employee) %></td>
+    <td><%= link_to 'Destroy', admin_employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Employee', new_admin_employee_path %>
