@@ -1,5 +1,5 @@
 class Timesheet < ActiveRecord::Base
-  attr_accessible :end_date, :employee, :worklogs
+  attr_accessible :end_date, :employee, :worklogs, :worklogs_attributes
 
   has_many :worklogs, :dependent => :destroy
   belongs_to :employee
