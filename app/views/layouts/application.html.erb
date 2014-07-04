@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
   <title>Itbs</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -9,6 +9,11 @@
 <body>
 
 <%= yield %>
+
+</p>
+</p>
+</p>
+<%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => :delete %>
 
 </body>
 </html>
