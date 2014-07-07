@@ -2,6 +2,7 @@ require 'test_helper'
 
 class TimesheetsControllerTest < ActionController::TestCase
   setup do
+    login_as(employees(:Andre))
     @timesheet = timesheets(:timesheet_for_andre_with_two_worklog)
   end
 

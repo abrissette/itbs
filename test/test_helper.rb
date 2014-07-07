@@ -11,4 +11,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def login_as(employee)
+    @request.session[:employee_id] = employee ? employees(employee).id : nil
+  end
+
 end
